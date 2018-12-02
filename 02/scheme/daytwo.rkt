@@ -7,7 +7,7 @@
       (length (filter (lambda (x) (member 3 x)) freqs)))))
 
 (define (letter-freq str)
-  (map (lambda (x) (length x)) (group-by (lambda (x) x) (string->list str))))
+  (map length (group-by identity (string->list str))))
 
 (define (part-two)
   (let ([data (read-input)])
@@ -22,9 +22,8 @@
     (if (= (- (string-length x) 1) (string-length common)) common null)))
 
 (define (string-find-common x y)
-  (list->string (map (lambda (x) (car x))
-                     (filter (lambda (x) (equal? (car x) (cdr x)))
-                             (map cons (string->list x) (string->list y))))))
+  (list->string (map car (filter (lambda (x) (equal? (car x) (cdr x)))
+                                 (map cons (string->list x) (string->list y))))))
 
 (define (stream-first-non-null str)
   (let ([filtered (stream-filter (lambda (x) (not (null? x))) str)])
