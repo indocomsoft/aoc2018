@@ -1,9 +1,5 @@
 defmodule Twice do
-  def find_dup(list) do
-    find_dup(list, {0, MapSet.new([0])})
-  end
-
-  def find_dup(list, state) do
+  def find_dup(list, state \\ {0, MapSet.new([0])}) do
     case find_dup_iter(list, state) do
       {:ok, x} -> x
       {:error, new_state} -> find_dup(list, new_state)
