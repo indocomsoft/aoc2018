@@ -29,7 +29,7 @@ class DayTwo
     def letter_frequency(str)
       str
         .each_char
-        .group_by { |letter| letter }
+        .group_by(&:itself)
         .map { |letter, occurrences| [letter, occurrences.size] }
     end
 
